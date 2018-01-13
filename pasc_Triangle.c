@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 
-int main() {
-    int r, spc, c = 1;
-
-    scanf("%d", &r);
+#define PAT_SIZE 50
+int main(int argc, char* argv[]) {
 
     /*
      * Calculation for first three iterations (row = 5)
@@ -62,21 +63,49 @@ int main() {
      *
      * ------------------------------------------------------------------
      */
+    char pat[PAT_SIZE];
+    int len, c;
 
-    for (int i = 0; i < r; ++i) {
-        for (spc = 1; spc <= r-i; ++spc)
-            printf("  ");
+    for(;;) {
+        printf("Coefficient: ");
+        fflush(stdout);
 
-        for (int j = 0; j <= i; j++) {
-            if (j == 0 || i == 0)
-                c = 1;
-            else
-                c = c*(i-j+1)/j;
+        if (fgets(pat, 50, stdin) != NULL)
+        {
+            pat[strcspn(pat, "\n")] = 0;
+            len = strlen(pat);
 
-            printf("%4d", c);
+            c = atoi(pat);
+
+            if (strcmp(pat, "q") == 0)
+                break;
+
+            if (len < 1)
+            {
+                puts("Please enter a positive integer.");
+            }
+
+            printf("%d\n", c);
         }
-        printf("\n");
-    }
 
+    }
+//
+//     int r, spc, c = 1;
+//
+//        for (int i = 0; i < r; ++i) {
+//            for (spc = 1; spc <= r - i; ++spc)
+//                printf("  ");
+//
+//            for (int j = 0; j <= i; j++) {
+//                if (j == 0 || i == 0)
+//                    c = 1;
+//                else
+//                    c = c * (i - j + 1) / j;
+//
+//                printf("%4d", c);
+//            }
+//            printf("\n");
+    //    }
+    //}
     return 0;
 }
